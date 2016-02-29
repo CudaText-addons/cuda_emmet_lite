@@ -1,0 +1,27 @@
+[info]
+title=Emmet Lite
+desc=Emmet engine, see www.emmet.io
+type=cudatext-plugin
+subdir=cuda_emmet_lite
+
+[item1]
+section=commands
+caption=Emmet Lite\Expand abbreviation
+method=expand_abbrev
+hotkey=Ctrl+,
+[item2]
+section=commands
+caption=Emmet Lite\Wrap with abbreviation
+method=wrap_abbrev
+[item3]
+section=commands
+caption=Emmet Lite\-
+method=-
+[item4]
+section=commands
+caption=Emmet Lite\Select profile
+method=profiles
+[item5]
+section=commands
+caption=Emmet Lite\Help
+method=help
