@@ -3,6 +3,7 @@ title=Emmet Lite
 desc=Emmet engine, see www.emmet.io
 type=cudatext-plugin
 subdir=cuda_emmet_lite
+homepage=https://github.com/CudaText-addons/cuda_emmet_lite
 
 [item1]
 section=commands
