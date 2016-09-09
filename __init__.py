@@ -1,14 +1,11 @@
-#Author: Alexey (Synwrite)
-#License: MIT
-
 import os
 import webbrowser
 from cudatext import *
-from .run_proc import *
+from .node_proc import *
 from .profiles_list import *
 from .proc_snip_insert import *
 
-fn_script = os.path.join(os.path.dirname(__file__), 'run.wsf')
+fn_script = os.path.join(os.path.dirname(__file__), 'runner.js')
 fn_ini = os.path.join(app_path(APP_DIR_SETTINGS), 'cuda_emmet.ini')
 ini_section = 'setup'
 ini_key_profile = 'profile'
@@ -33,10 +30,6 @@ def get_profile():
     
 
 def do_find_abbrev():
-    if os.name!='nt':
-        msg_box('Plugin is for Windows', MB_OK)
-        return
-
     x, y, x1, y1 = ed.get_carets()[0]
     text = ed.get_text_line(y)
     if not text: return
@@ -44,13 +37,7 @@ def do_find_abbrev():
     if not text: return
 
     try:
-        return run_with_text('', [
-            'cscript.exe',
-            '/NoLogo',
-            fn_script, 
-            'extract', 
-            text.replace('"', text_quote)
-            ])
+        return run_node('', [fn_script, 'extract', text])
     except Exception as e:
         msg_box(str(e), MB_OK+MB_ICONERROR)
         return
@@ -72,22 +59,10 @@ def do_insert_result(x0, y0, x1, y1, text, text_insert):
 
 
 def do_expand_abbrev(text_ab):
-    if os.name!='nt':
-        msg_box('Plugin is for Windows', MB_OK)
-        return
-
     msg_status('Expanding: %s (profile %s)' % (text_ab, get_profile()))
         
     try:
-        text = run_with_text('', [
-            'cscript.exe',
-            '/NoLogo',
-            fn_script, 
-            'expand', 
-            text_ab.replace('"', text_quote), 
-            get_syntax(), 
-            get_profile()
-            ])
+        text = run_node('', [fn_script, 'expand', text_ab, get_syntax(), get_profile() ])
     except Exception as e:
         msg_box(str(e), MB_OK+MB_ICONERROR)
         return

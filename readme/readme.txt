@@ -2,7 +2,7 @@ Emmet Lite plugin for CudaText.
 See www.emmet.io for info.
 
 Plugin gives 2 basic commands: "expand abbreviation", "wrap with abbreviation".
-Uses WindowsScriptHost, so don't work on Linux.
+Uses Node.js, you must install it first.
 
 
 Emmet profile can be changed using menu. Supported:
@@ -14,9 +14,9 @@ Emmet profile can be changed using menu. Supported:
  - plain   - the same as "line", but doesn't move caret. 
 
 Emmet syntax detected automatically:
-for lexers CSS/LESS/SCSS/SASS/Stylus it's "css"; 
-for lexers XML/XSLT it's "xsl"; 
-for others it's "html".
+- for lexers CSS/LESS/SCSS/SASS/Stylus it's "css"; 
+- for lexers XML/XSLT it's "xsl"; 
+- for others it's "html".
 
 Author: Alexey (CudaText)
 License: MIT
