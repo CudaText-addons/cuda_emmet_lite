@@ -4,18 +4,21 @@ import subprocess
 
 MSG_CANNOT_RUN_NODE = "Cannot run Node.js. Make sure it's in your PATH."
 
+#
+# Linux: package "nodejs" installs binary "nodejs"
+# Mac: need to specify path
+#
 NODE_FILE = 'node'
-if os.name=='posix':
-    s = platform.system()
-    if s=='Linux':
-        NODE_FILE = 'nodejs' 
-    elif s=='Darwin':
-        NODE_FILE = '/usr/local/bin/node'
+s = platform.system()
+if s == 'Linux':
+    NODE_FILE = 'nodejs' 
+elif s == 'Darwin':
+    NODE_FILE = '/usr/local/bin/node'
 
 
 def run_node(text, params_list):
     enc = 'utf8'
-    if os.name!='posix':
+    if os.name == 'nt':
         startupinfo = subprocess.STARTUPINFO()
         startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
         startupinfo.wShowWindow = subprocess.SW_HIDE
