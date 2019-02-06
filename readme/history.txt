@@ -1,5 +1,5 @@
 
-2019.02.05
+2019.02.06
 + updated Emmet engine
 + made "Expand" command 2 times faster
 
