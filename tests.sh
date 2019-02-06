@@ -1,5 +1,5 @@
-echo Extract: 
-nodejs runner.js extract "<html><body>ul*2>li*3"
+echo Find+expand: 
+nodejs runner.js find_expand "<html><body>ul>li*2"
 echo " "
 echo Expand: 
-nodejs runner.js expand "ul*2>li*3" "html" "html"
+nodejs runner.js expand "ul>li*2" "html" "html"
