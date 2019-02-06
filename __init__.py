@@ -29,7 +29,7 @@ def get_profile():
     return ini_read(fn_ini, ini_section, ini_key_profile, profiles[0])
     
 
-def do_find_abbrev():
+def do_find_expand():
     x, y, x1, y1 = ed.get_carets()[0]
     text = ed.get_text_line(y)
     if not text: return
@@ -37,7 +37,7 @@ def do_find_abbrev():
     if not text: return
 
     try:
-        return run_node('', [fn_script, 'extract', text])
+        return run_node('', [fn_script, 'find_expand', text, get_syntax(), get_profile() ])
     except Exception as e:
         msg_box(str(e), MB_OK+MB_ICONERROR)
         return
@@ -109,15 +109,13 @@ class Command:
         
 
     def expand_abbrev(self):
-        text_ab = do_find_abbrev()
-        if not text_ab:
+        text = do_find_expand()
+        if not text or ';' not in text:
             msg_status('Cannot find Emmet abbreviation')
             return
-
-        text = do_expand_abbrev(text_ab)
-        if not text: return                                               
-
-        nlen = len(text_ab)
+            
+        slen, text = text.split(';', maxsplit=2)
+        nlen = int(slen)
         x0, y0, x1, y1 = ed.get_carets()[0]
         xstart = max(0, x0-nlen)
 

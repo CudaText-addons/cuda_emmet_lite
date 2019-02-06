@@ -1,6 +1,7 @@
 
 2019.02.05
 + updated Emmet engine
++ made "Expand" command 2 times faster
 
 2016.09.09
 + used Node.js, supports Win/Mac/Linux
