@@ -1,7 +1,7 @@
-var emmet = require("./emmet.js");
+var emmet = require("./emmet/emmet.js");
 
 function do_extract(text) {
-    return emmet.require('actionUtils').extractAbbreviation(text);
+    return emmet.utils.action.extractAbbreviation(text);
 }
 
 function do_expand(text, syntax, profile) {
