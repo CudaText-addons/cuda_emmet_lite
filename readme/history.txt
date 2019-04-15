@@ -1,4 +1,7 @@
 
+2019.04.15
+- fix: annoying error window if Emmet called for incorrect position
+
 2019.02.06
 + updated Emmet engine
 + made "Expand" command 2 times faster
