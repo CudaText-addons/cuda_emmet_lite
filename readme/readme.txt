@@ -18,5 +18,5 @@ Emmet syntax detected automatically:
 - for lexers XML/XSLT it's "xsl"; 
 - for others it's "html".
 
-Author: Alexey (CudaText)
+Author: Alexey Torgashin (CudaText)
 License: MIT
