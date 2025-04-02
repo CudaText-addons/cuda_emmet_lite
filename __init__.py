@@ -39,7 +39,7 @@ def do_find_expand():
     try:
         return run_node('', [fn_script, 'find_expand', text, get_syntax(), get_profile() ])
     except Exception as e:
-        #msg_status(str(e))
+        msg_box(str(e), MB_OK+MB_ICONERROR)
         return
 
 
