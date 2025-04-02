@@ -1,9 +1,10 @@
 import os
 import webbrowser
-from cudatext import *
 from .node_proc import *
 from .profiles_list import *
 from .proc_snip_insert import *
+from cudatext import *
+import cudax_lib as appx
 
 fn_script = os.path.join(os.path.dirname(__file__), 'runner.js')
 fn_ini = os.path.join(app_path(APP_DIR_SETTINGS), 'cuda_emmet.ini')
@@ -14,7 +15,7 @@ text_quote = '%Q%'
 lexers_xml = ['XML', 'XSL', 'XSLT']
 lexers_css = ['CSS', 'SCSS', 'SASS', 'Sass', 'Stylus', 'LESS']
 
-help_url = 'http://docs.emmet.io/cheat-sheet/'
+HELP_URL = 'http://docs.emmet.io/cheat-sheet/'
 
 def get_syntax():
     lexer = ed.get_prop(PROP_LEXER_CARET)
@@ -82,7 +83,7 @@ class Command:
         ini_write(fn_ini, ini_section, ini_key_profile, item)
 
     def help(self):
-        webbrowser.open_new_tab(help_url)
+        appx.safe_open_url(HELP_URL)
         msg_status('Opened browser')
 
     def wrap_abbrev(self):
