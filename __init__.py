@@ -1,5 +1,4 @@
 import os
-import webbrowser
 from .node_proc import *
 from .profiles_list import *
 from .proc_snip_insert import *
@@ -10,18 +9,16 @@ fn_script = os.path.join(os.path.dirname(__file__), 'runner.js')
 fn_ini = os.path.join(app_path(APP_DIR_SETTINGS), 'cuda_emmet.ini')
 ini_section = 'setup'
 ini_key_profile = 'profile'
-text_quote = '%Q%'
 
-lexers_xml = ['XML', 'XSL', 'XSLT']
-lexers_css = ['CSS', 'SCSS', 'SASS', 'Sass', 'Stylus', 'LESS']
-
+LEXERS_XML = ['XML', 'XSL', 'XSLT']
+LEXERS_CSS = ['CSS', 'SCSS', 'SASS', 'Sass', 'Stylus', 'LESS']
 HELP_URL = 'http://docs.emmet.io/cheat-sheet/'
 
 def get_syntax():
     lexer = ed.get_prop(PROP_LEXER_CARET)
-    if lexer in lexers_xml:
+    if lexer in LEXERS_XML:
         return 'xsl'
-    elif lexer in lexers_css:
+    elif lexer in LEXERS_CSS:
         return 'css'
     else:
         return 'html'
