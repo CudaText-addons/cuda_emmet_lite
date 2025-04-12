@@ -5,6 +5,8 @@ from .proc_snip_insert import *
 from cudatext import *
 import cudax_lib as appx
 
+_ = appx.get_translation(__file__)  # i18n
+
 fn_script = os.path.join(os.path.dirname(__file__), 'runner.js')
 fn_ini = os.path.join(app_path(APP_DIR_SETTINGS), 'cuda_emmet.ini')
 ini_section = 'setup'
@@ -57,7 +59,7 @@ def do_insert_result(x0, y0, x1, y1, text, text_insert):
 
 
 def do_expand_abbrev(text_ab):
-    msg_status('Expanding: %s (profile %s)' % (text_ab, get_profile()))
+    msg_status(_('Expanding: %s (profile %s)') % (text_ab, get_profile()))
 
     try:
         text = run_node('', [fn_script, 'expand', text_ab, get_syntax(), get_profile() ])
@@ -66,24 +68,27 @@ def do_expand_abbrev(text_ab):
         return
 
     if not text or text=='?':
-        msg_status('Cannot expand Emmet abbreviation: '+text_ab)
+        msg_status(_('Cannot expand Emmet abbreviation: ')+text_ab)
         return
 
     return text
 
 
 class Command:
-    def profiles(self):
-        n = dlg_menu(DMENU_LIST, profiles, caption='Profiles')
+    @staticmethod
+    def profiles():
+        n = dlg_menu(DMENU_LIST, profiles, caption=_('Profiles'))
         if n is None: return
         item = profiles[n]
         ini_write(fn_ini, ini_section, ini_key_profile, item)
 
-    def help(self):
+    @staticmethod
+    def help():
         appx.safe_open_url(HELP_URL)
-        msg_status('Opened browser')
+        msg_status(_('Opened browser'))
 
-    def wrap_abbrev(self):
+    @staticmethod
+    def wrap_abbrev():
         x0, y0, x1, y1 = ed.get_carets()[0]
         #sort coords
         if (y1>y0) or ((y1==y0) and (x1>x0)):
@@ -93,10 +98,10 @@ class Command:
 
         text_sel = ed.get_text_sel()
         if not text_sel:
-            msg_status('Text not selected')
+            msg_status(_('Text not selected'))
             return
 
-        text_ab = dlg_input('Emmet abbreviation:', 'div')
+        text_ab = dlg_input(_('Emmet abbreviation:'), 'div')
         if not text_ab:
             return
 
@@ -106,10 +111,11 @@ class Command:
         do_insert_result(x0, y0, x1, y1, text, text_sel)
 
 
-    def expand_abbrev(self):
+    @staticmethod
+    def expand_abbrev():
         text = do_find_expand()
         if not text or ';' not in text:
-            msg_status('Cannot find Emmet abbreviation')
+            msg_status(_('Cannot find Emmet abbreviation'))
             return
 
         slen, text = text.split(';', maxsplit=2)
