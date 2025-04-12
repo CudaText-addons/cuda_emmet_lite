@@ -1,3 +1,5 @@
+2025.04.12
++ add: i18n, by Markus F.
 
 2019.04.15
 - fix: annoying error window if Emmet called for incorrect position
